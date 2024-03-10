@@ -2,11 +2,12 @@ import React, { useState } from 'react'
 
 function Character(props) { // ❗ Add the props
   const { data, planets } = props;
-  const [homeworld, setHomeWorld] = useState(false);// ❗ Create a state to hold whether the homeworld is rendering or not
+  const [homeworldVisible, setHomeworldVisible] = useState(false);// ❗ Create a state to hold whether the homeworld is rendering or not
   const toggleHomeworld = () => {
-    setHomeWorld(!homeworld);
-  }// ❗ Create a "toggle" click handler to show or remove the homeworld
-  let homeworldName = 'Unknown Planet';
+    setHomeworldVisible(!homeworldVisible);
+  };// ❗ Create a "toggle" click handler to show or remove the homeworld
+  
+  let homeworldName = '';
   for (let i = 0; i < planets.length; i++) {
     if (planets[i].id === data.homeworld) {
       homeworldName = planets[i].name;
@@ -15,9 +16,9 @@ function Character(props) { // ❗ Add the props
   }
   
   return (
-    <div className='character-card'>
-      <h3 className='character-name' onClick={toggleHomeworld}>{data.name}</h3>
-      {homeworld && (
+    <div className='character-card' onClick={toggleHomeworld}>
+      <h3 className='character-name'>{data.name}</h3>
+      {homeworldVisible && (
         <p>
           Planet: <span className='character-planet'>{homeworldName}</span>
         </p>

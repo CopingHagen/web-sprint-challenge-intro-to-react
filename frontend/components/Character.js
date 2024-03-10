@@ -1,12 +1,19 @@
-import React from 'react'
-import urlPeople from './App'
+import React, { useState } from 'react'
 
-function Character() { // ❗ Add the props
-  // ❗ Create a state to hold whether the homeworld is rendering or not
-  // ❗ Create a "toggle" click handler to show or remove the homeworld
+function Character(props) { // ❗ Add the props
+  const { data } = props;
+  const [homeworld, setHomeWorld] = useState(false);// ❗ Create a state to hold whether the homeworld is rendering or not
+  const toggleHomeworld = () => {
+    setHomeWorld(!homeworld);
+  }// ❗ Create a "toggle" click handler to show or remove the homeworld
   return (
-    <div>
-      {<p>{urlPeople.homeworld}</p>/* Use the same markup with the same attributes as in the mock */}
+    <div className='character-card'>
+      <h3 className='character-name' onClick={toggleHomeworld}>{data.name}</h3>
+      {homeworld && (
+        <p>
+          Planet: <span className='character-planet'>{data.homeworld}</span>
+        </p>
+        /* Use the same markup with the same attributes as in the mock */)}
     </div>
   )
 }

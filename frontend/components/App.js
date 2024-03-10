@@ -13,14 +13,14 @@ function App() {
     function fetchData() {
       axios.get(urlPlanets)
         .then(res => {
-          console.log(res.data)
+          setPlanets(res.data);
         })
         .catch(err => {
           console.log(err.message)
         })
       axios.get(urlPeople)
         .then(res => {
-          console.log(res.data)
+          setPeople(res.data);
         })
         .catch(err => {
           console.log(err.message)

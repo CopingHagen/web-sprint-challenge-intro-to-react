@@ -6,7 +6,9 @@ const urlPlanets = 'http://localhost:9009/api/planets'
 const urlPeople = 'http://localhost:9009/api/people'
 
 function App() {
-  const [people] = useState()
+  const [planets, setPlanets] = useState([])
+  const [people, setPeople] = useState([])
+  
   useEffect(() => {
     function fetchData() {
       axios.get(urlPlanets)
@@ -25,14 +27,17 @@ function App() {
         })
     }
     fetchData()
-  })
+  }, [])
   // ❗ Create state to hold the data from the API
   // ❗ Create effects to fetch the data and put it in state
   return (
     <div>
       <h2>Star Wars Characters</h2>
       <p>See the README of the project for instructions on completing this challenge</p>
-      {/* ❗ Map over the data in state, rendering a Character at each iteration */}
+      {people.map(person => (
+        <Character key={person.id} data={person} />
+        ))//* ❗ Map over the data in state, rendering a Character at each iteration */
+      }
     </div>
   )
 }

@@ -35,7 +35,7 @@ function App() {
       <h2>Star Wars Characters</h2>
       <p>See the README of the project for instructions on completing this challenge</p>
       {people.map(person => (
-        <Character key={person.id} data={person} />
+        <Character key={person.id} data={person} planets={planets}/>
         ))//* ❗ Map over the data in state, rendering a Character at each iteration */
       }
     </div>
